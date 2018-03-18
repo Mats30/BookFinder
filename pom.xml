@@ -1,25 +1,91 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
-  <modelVersion>4.0.0</modelVersion>
-  <groupId>pl.codebrothers</groupId>
-  <artifactId>BookFinder</artifactId>
-  <packaging>war</packaging>
-  <version>1.0-SNAPSHOT</version>
-  <name>BookFinder Maven Webapp</name>
-  <url>http://maven.apache.org</url>
+<project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://maven.apache.org/POM/4.0.0"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <groupId>pl.codebrothers</groupId>
+    <artifactId>BookFinder</artifactId>
+    <packaging>pom</packaging>
+    <version>1.0-SNAPSHOT</version>
+    <modules>
+        <module>scrapper</module>
+        <module>database</module>
+    </modules>
+    <name>BookFinder Maven Webapp</name>
+    <url>http://maven.apache.org</url>
 
-  <dependencies>
-      <dependency>
-          <groupId>org.junit.jupiter</groupId>
-          <artifactId>junit-jupiter-api</artifactId>
-          <version>5.1.0</version>
-          <scope>test</scope>
-      </dependency>
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <maven.compiler.source>1.8</maven.compiler.source>
+        <maven.compiler.target>1.8</maven.compiler.target>
+        <!--SPRING-->
+        <spring.version>5.0.4.RELEASE</spring.version>
+        <!--TESTING DEPENDENCIES VERSIONS-->
+        <junit.version>5.1.0</junit.version>
+        <assertj.version>3.9.1</assertj.version>
+        <mockito.version>2.0.2-beta</mockito.version>
+        <!--LOGGING DEPENDENCIES VERSIONS-->
+        <sl4jApi.version>1.7.25</sl4jApi.version>
+        <logbackClassic.version>1.2.3</logbackClassic.version>
+        <logbackCore.version>1.2.3</logbackCore.version>
+    </properties>
 
-  </dependencies>
+    <dependencyManagement>
+        <dependencies>
+            <!--SPRING-->
+            <dependency>
+                <groupId>org.springframework</groupId>
+                <artifactId>spring-core</artifactId>
+                <version>${spring.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.springframework</groupId>
+                <artifactId>spring-context</artifactId>
+                <version>${spring.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.springframework</groupId>
+                <artifactId>spring-beans</artifactId>
+                <version>${spring.version}</version>
+            </dependency>
+            <!--TESTING DEPENDENCIES-->
+            <dependency>
+                <groupId>org.junit.jupiter</groupId>
+                <artifactId>junit-jupiter-api</artifactId>
+                <version>${junit.version}</version>
+                <scope>test</scope>
+            </dependency>
+            <dependency>
+                <groupId>org.assertj</groupId>
+                <artifactId>assertj-core</artifactId>
+                <version>${assertj.version}</version>
+                <scope>test</scope>
+            </dependency>
+            <dependency>
+                <groupId>org.mockito</groupId>
+                <artifactId>mockito-all</artifactId>
+                <version>${mockito.version}</version>
+                <scope>test</scope>
+            </dependency>
+            <!--LOGGING DEPENDENCIES-->
+            <dependency>
+                <groupId>org.slf4j</groupId>
+                <artifactId>slf4j-api</artifactId>
+                <version>${sl4jApi.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>ch.qos.logback</groupId>
+                <artifactId>logback-classic</artifactId>
+                <version>${logbackClassic.version}</version>
+                <scope>test</scope>
+            </dependency>
+            <dependency>
+                <groupId>ch.qos.logback</groupId>
+                <artifactId>logback-core</artifactId>
+                <version>${logbackCore.version}</version>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
 
-
-  <build>
-    <finalName>BookFinder</finalName>
-  </build>
+    <build>
+        <finalName>BookFinder</finalName>
+    </build>
 </project>
