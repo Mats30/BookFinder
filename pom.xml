@@ -16,8 +16,11 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <maven.compiler.source>1.8</maven.compiler.source>
         <maven.compiler.target>1.8</maven.compiler.target>
+        <!--JAVAX-->
+        <javax-servlet.version>4.0.0</javax-servlet.version>
         <!--SPRING-->
         <spring.version>5.0.4.RELEASE</spring.version>
+        <spring-data-rest.version>3.0.5.RELEASE</spring-data-rest.version>
         <!--TESTING DEPENDENCIES VERSIONS-->
         <junit.version>5.1.0</junit.version>
         <assertj.version>3.9.1</assertj.version>
@@ -30,6 +33,13 @@
 
     <dependencyManagement>
         <dependencies>
+            <!--JAVAX-->
+            <dependency>
+                <groupId>javax.servlet</groupId>
+                <artifactId>javax.servlet-api</artifactId>
+                <version>${javax-servlet.version}</version>
+                <scope>provided</scope>
+            </dependency>
             <!--SPRING-->
             <dependency>
                 <groupId>org.springframework</groupId>
@@ -45,6 +55,16 @@
                 <groupId>org.springframework</groupId>
                 <artifactId>spring-beans</artifactId>
                 <version>${spring.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.springframework</groupId>
+                <artifactId>spring-webmvc</artifactId>
+                <version>${spring.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.springframework.data</groupId>
+                <artifactId>spring-data-rest-webmvc</artifactId>
+                <version>${spring-data-rest.version}</version>
             </dependency>
             <!--TESTING DEPENDENCIES-->
             <dependency>

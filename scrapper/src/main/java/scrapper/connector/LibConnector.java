@@ -2,6 +2,8 @@ package scrapper.connector;
 
 import org.jsoup.nodes.Document;
 
+import java.util.Optional;
+
 public interface LibConnector {
-    Document connect(String url);
+    Optional<Document> connect(String url);
 }
