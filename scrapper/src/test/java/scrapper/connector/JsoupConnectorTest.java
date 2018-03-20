@@ -16,7 +16,7 @@ public class JsoupConnectorTest {
     @Test
     public void connectToEbookpointSiteWithValidURL() {
         Optional<Document> document = jsoupConnector.connect("https://ebookpoint.pl/kategorie/informatyka");
-        LOG.info("Downloaded", document);
+        LOG.info("Downloaded ebookpoint site", document);
         assertThat(document).isNotEqualTo(Optional.empty());
     }
 

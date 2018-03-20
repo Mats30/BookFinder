@@ -21,7 +21,7 @@ class EbookpointScrapper implements Scrapper {
         this.connector = connector;
     }
 
-    public List<Book> scrap() throws IOException {
+    public List<Book> scrap() {
         connector.connect(EBOOK_BASE_URL);
         return new ArrayList<>();
     }
