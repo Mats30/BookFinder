@@ -2,6 +2,7 @@ package model;
 
 import java.math.BigDecimal;
 import java.net.URL;
+import java.util.Objects;
 
 public class Book {
     private final String title;
@@ -21,6 +22,26 @@ public class Book {
         bookstore = bookBuilder.bookstore;
         type = bookBuilder.type;
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Book book = (Book) o;
+        return Objects.equals(title, book.title) &&
+                Objects.equals(author, book.author) &&
+                Objects.equals(newPrice, book.newPrice) &&
+                Objects.equals(oldPrice, book.oldPrice) &&
+                Objects.equals(url, book.url) &&
+                Objects.equals(bookstore, book.bookstore) &&
+                type == book.type;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(title, author, newPrice, oldPrice, url, bookstore, type);
+    }
+
 
     public static class Builder {
         private String title;
@@ -70,6 +91,8 @@ public class Book {
             return new Book(this);
         }
     }
+
+
 
     @Override
     public String toString() {
