@@ -8,8 +8,9 @@ public class Book {
     private final String author;
     private final BigDecimal newPrice;
     private final BigDecimal oldPrice;
-    private final URL url;
+    private final String url;
     private final String bookstore;
+    private final BookType type;
 
     private Book(Builder bookBuilder) {
         title = bookBuilder.title;
@@ -18,6 +19,7 @@ public class Book {
         oldPrice = bookBuilder.oldPrice;
         url = bookBuilder.url;
         bookstore = bookBuilder.bookstore;
+        type = bookBuilder.type;
     }
 
     public static class Builder {
@@ -25,8 +27,9 @@ public class Book {
         private String author;
         private BigDecimal newPrice;
         private BigDecimal oldPrice;
-        private URL url;
+        private String url;
         private String bookstore;
+        private BookType type;
 
         public Builder withTitle(String title) {
             this.title = title;
@@ -48,13 +51,18 @@ public class Book {
             return this;
         }
 
-        public Builder withURL(URL url) {
+        public Builder withURL(String url) {
             this.url = url;
             return this;
         }
 
         public Builder withBookStore(String bookStore) {
             this.bookstore = bookStore;
+            return this;
+        }
+
+        public Builder withType(BookType type) {
+            this.type = type;
             return this;
         }
 

@@ -1,19 +1,16 @@
 package scrapper.core;
 
-import model.Book;
+import org.jsoup.nodes.Document;
+import org.jsoup.select.Elements;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
-import scrapper.Scrapper;
 import scrapper.connector.LibConnector;
 
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
+import java.io.File;
+import java.util.Optional;
 
 @Component
 class EbookpointScrapper implements Scrapper {
-    private static String EBOOK_BASE_URL = "https://ebookpoint.pl/kategorie/informatyka";
-
     private LibConnector connector;
 
     @Autowired
@@ -21,8 +18,12 @@ class EbookpointScrapper implements Scrapper {
         this.connector = connector;
     }
 
-    public List<Book> scrap() {
-        connector.connect(EBOOK_BASE_URL);
-        return new ArrayList<>();
+    public Elements scrap(String url) {
+        Optional<Document> htmlPage = connector.connect(url);
+        Elements elements = null;
+        if (htmlPage.isPresent()) {
+            elements = htmlPage.get().getElementsByClass("classPresale");
+        }
+        return elements;
     }
 }
