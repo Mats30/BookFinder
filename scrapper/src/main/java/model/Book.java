@@ -1,7 +1,6 @@
 package model;
 
 import java.math.BigDecimal;
-import java.net.URL;
 import java.util.Objects;
 
 public class Book {

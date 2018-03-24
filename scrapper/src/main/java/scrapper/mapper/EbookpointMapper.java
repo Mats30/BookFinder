@@ -5,6 +5,7 @@ import org.jsoup.select.Elements;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.math.BigDecimal;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -21,6 +22,8 @@ class EbookpointMapper implements Mapper {
                         .withTitle(e.select("h3").first().child(0).text())
                         .withBookStore("ebookpoint")
                         .withURL(e.select("h3").first().child(0).attr("href"))
+                        .withNewPrice(new BigDecimal(e.select(".changeFormat2").first().attr("price")))
+                        .withOldPrice(new BigDecimal(e.select(".changeFormat2").first().attr("constprice")))
                         .build())
                 .collect(Collectors.toList());
     }

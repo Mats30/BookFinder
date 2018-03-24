@@ -32,16 +32,16 @@ class EbookpointMapperTest {
                 .withTitle("Górskie wyprawy fotograficzne")
                 .withBookStore("ebookpoint")
                 .withURL("//ebookpoint.pl/ksiazki/gorskie-wyprawy-fotograficzne-karol-nienartowicz,gowyfo.htm")
-                .withOldPrice(new BigDecimal(59))
-                .withNewPrice(new BigDecimal(47.2))
+                .withOldPrice(new BigDecimal("59"))
+                .withNewPrice(new BigDecimal("47.2"))
                 .build();
         Book second = new Book.Builder()
                 .withAuthor("Aditya Bhargava")
                 .withTitle("Algorytmy. Ilustrowany przewodnik")
                 .withBookStore("ebookpoint")
                 .withURL("//ebookpoint.pl/ksiazki/algorytmy-ilustrowany-przewodnik-aditya-bhargava,algoip.htm")
-                .withOldPrice(new BigDecimal(54.89))
-                .withNewPrice(new BigDecimal(43.91))
+                .withOldPrice(new BigDecimal("54.89"))
+                .withNewPrice(new BigDecimal("43.91"))
                 .build();
 
         Book third = new Book.Builder()
@@ -49,8 +49,8 @@ class EbookpointMapperTest {
                 .withTitle("PHP. Obiekty, wzorce, narzędzia. Wydanie V")
                 .withBookStore("ebookpoint")
                 .withURL("//ebookpoint.pl/ksiazki/php-obiekty-wzorce-narzedzia-wydanie-v-matt-zandstra,phpob5.htm")
-                .withOldPrice(new BigDecimal(89))
-                .withNewPrice(new BigDecimal(71.2))
+                .withOldPrice(new BigDecimal("89"))
+                .withNewPrice(new BigDecimal("71.2"))
                 .build();
 
         Book fourth = new Book.Builder()
@@ -58,8 +58,8 @@ class EbookpointMapperTest {
                 .withTitle("Windows 7 PL. Pierwsza pomoc")
                 .withBookStore("ebookpoint")
                 .withURL("//ebookpoint.pl/ksiazki/windows-7-pl-pierwsza-pomoc-adam-jozefiok,win7pp.htm")
-                .withOldPrice(new BigDecimal(17.9))
-                .withNewPrice(new BigDecimal(14.32))
+                .withOldPrice(new BigDecimal("17.9"))
+                .withNewPrice(new BigDecimal("14.32"))
                 .build();
         List<Book> expectedBooksList = new ArrayList<>(); // TODO: switch to List.of() when JDK9 will be on board
         expectedBooksList.add(first);
