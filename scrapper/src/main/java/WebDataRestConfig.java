@@ -8,7 +8,7 @@ import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 
 @EnableWebMvc
 @Configuration
-@ComponentScan({"scrapper.connector", "scrapper.core"})
+@ComponentScan({"scrapper.connector", "scrapper.core", "scrapper.mapper", "controllers", "scrapper.service"})
 public class WebDataRestConfig extends RepositoryRestMvcConfiguration {
 
     public WebDataRestConfig(ApplicationContext context, ObjectFactory<ConversionService> conversionService) {

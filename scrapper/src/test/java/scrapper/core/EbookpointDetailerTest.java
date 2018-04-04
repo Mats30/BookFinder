@@ -9,7 +9,7 @@ import java.io.IOException;
 import static org.assertj.core.api.Assertions.assertThat;
 
 class EbookpointDetailerTest {
-    private static final String DESTINATION = "src/test/resources/informatyka.html";
+    private static final String DESTINATION = "src/test/resources/informatyka.1";
     private EbookpointDetailer detailer = new EbookpointDetailer();
 
     @Test

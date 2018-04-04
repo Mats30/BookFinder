@@ -4,13 +4,17 @@ import model.Book;
 import org.jsoup.select.Elements;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.stereotype.Component;
+import sun.misc.Contended;
 
 import java.math.BigDecimal;
 import java.util.List;
 import java.util.stream.Collectors;
 
+@Component
 class EbookpointMapper implements Mapper {
     private static final Logger LOG = LoggerFactory.getLogger(EbookpointMapper.class);
+
 
     @Override
     public List<Book> map(final Elements parsedDivs) {
