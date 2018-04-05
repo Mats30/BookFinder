@@ -11,6 +11,11 @@
     </modules>
     <name>BookFinder Maven Webapp</name>
     <url>http://maven.apache.org</url>
+    <parent>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-parent</artifactId>
+        <version>2.0.0.RELEASE</version>
+    </parent>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -19,7 +24,7 @@
         <!--JAVAX-->
         <javax-servlet.version>4.0.0</javax-servlet.version>
         <!--SPRING-->
-        <spring.version>5.0.4.RELEASE</spring.version>
+        <spring-boot.version>2.0.0.RELEASE</spring-boot.version>
         <spring-data-rest.version>3.0.5.RELEASE</spring-data-rest.version>
         <!--TESTING DEPENDENCIES VERSIONS-->
         <junit.version>5.1.0</junit.version>
@@ -40,31 +45,11 @@
                 <version>${javax-servlet.version}</version>
                 <scope>provided</scope>
             </dependency>
-            <!--SPRING-->
+            <!--SPRING-BOOT-->
             <dependency>
-                <groupId>org.springframework</groupId>
-                <artifactId>spring-core</artifactId>
-                <version>${spring.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>org.springframework</groupId>
-                <artifactId>spring-context</artifactId>
-                <version>${spring.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>org.springframework</groupId>
-                <artifactId>spring-beans</artifactId>
-                <version>${spring.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>org.springframework</groupId>
-                <artifactId>spring-webmvc</artifactId>
-                <version>${spring.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>org.springframework.data</groupId>
-                <artifactId>spring-data-rest-webmvc</artifactId>
-                <version>${spring-data-rest.version}</version>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-starter-web</artifactId>
+                <version>${spring-boot.version}</version>
             </dependency>
             <!--TESTING DEPENDENCIES-->
             <dependency>
@@ -86,22 +71,22 @@
                 <scope>test</scope>
             </dependency>
             <!--LOGGING DEPENDENCIES-->
-            <dependency>
-                <groupId>org.slf4j</groupId>
-                <artifactId>slf4j-api</artifactId>
-                <version>${sl4jApi.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>ch.qos.logback</groupId>
-                <artifactId>logback-classic</artifactId>
-                <version>${logbackClassic.version}</version>
-                <scope>test</scope>
-            </dependency>
-            <dependency>
-                <groupId>ch.qos.logback</groupId>
-                <artifactId>logback-core</artifactId>
-                <version>${logbackCore.version}</version>
-            </dependency>
+            <!--<dependency>-->
+                <!--<groupId>org.slf4j</groupId>-->
+                <!--<artifactId>slf4j-api</artifactId>-->
+                <!--<version>${sl4jApi.version}</version>-->
+            <!--</dependency>-->
+            <!--<dependency>-->
+                <!--<groupId>ch.qos.logback</groupId>-->
+                <!--<artifactId>logback-classic</artifactId>-->
+                <!--<version>${logbackClassic.version}</version>-->
+                <!--<scope>test</scope>-->
+            <!--</dependency>-->
+            <!--<dependency>-->
+                <!--<groupId>ch.qos.logback</groupId>-->
+                <!--<artifactId>logback-core</artifactId>-->
+                <!--<version>${logbackCore.version}</version>-->
+            <!--</dependency>-->
         </dependencies>
     </dependencyManagement>
 

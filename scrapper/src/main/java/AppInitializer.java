@@ -1,22 +1,10 @@
-import org.springframework.lang.Nullable;
-import org.springframework.web.servlet.support.AbstractAnnotationConfigDispatcherServletInitializer;
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
 
-public class AppInitializer extends AbstractAnnotationConfigDispatcherServletInitializer {
+@SpringBootApplication
+public class AppInitializer {
 
-    @Nullable
-    @Override
-    protected Class<?>[] getRootConfigClasses() {
-        return new Class[0];
-    }
-
-    @Nullable
-    @Override
-    protected Class<?>[] getServletConfigClasses() {
-        return new Class[]{WebDataRestConfig.class};
-    }
-
-    @Override
-    protected String[] getServletMappings() {
-        return new String[]{"/"};
-    }
+    public static void main(String[] args) {
+        SpringApplication.run(AppInitializer.class, args);
+     }
 }
