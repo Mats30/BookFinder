@@ -7,20 +7,19 @@
     <version>1.0-SNAPSHOT</version>
     <modules>
         <module>scrapper</module>
-        <module>database</module>
     </modules>
     <name>BookFinder Maven Webapp</name>
     <url>http://maven.apache.org</url>
     <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
-        <version>2.0.0.RELEASE</version>
+        <version>2.0.1.RELEASE</version>
     </parent>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <maven.compiler.source>1.8</maven.compiler.source>
-        <maven.compiler.target>1.8</maven.compiler.target>
+        <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+        <java.version>9</java.version>
         <!--JAVAX-->
         <javax-servlet.version>4.0.0</javax-servlet.version>
         <!--SPRING-->
@@ -31,7 +30,7 @@
         <assertj.version>3.9.1</assertj.version>
         <mockito.version>2.0.2-beta</mockito.version>
         <!--LOGGING DEPENDENCIES VERSIONS-->
-        <sl4jApi.version>1.7.25</sl4jApi.version>
+        <slf4j.version>1.7.25</slf4j.version>
         <logbackClassic.version>1.2.3</logbackClassic.version>
         <logbackCore.version>1.2.3</logbackCore.version>
     </properties>
@@ -45,10 +44,25 @@
                 <version>${javax-servlet.version}</version>
                 <scope>provided</scope>
             </dependency>
+            <dependency>
+                <groupId>javax.xml.bind</groupId>
+                <artifactId>jaxb-api</artifactId>
+                <version>2.3.0</version>
+            </dependency>
             <!--SPRING-BOOT-->
             <dependency>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-starter-web</artifactId>
+                <version>${spring-boot.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-starter</artifactId>
+                <version>${spring-boot.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-starter-actuator</artifactId>
                 <version>${spring-boot.version}</version>
             </dependency>
             <!--TESTING DEPENDENCIES-->
@@ -70,27 +84,18 @@
                 <version>${mockito.version}</version>
                 <scope>test</scope>
             </dependency>
-            <!--LOGGING DEPENDENCIES-->
-            <!--<dependency>-->
-                <!--<groupId>org.slf4j</groupId>-->
-                <!--<artifactId>slf4j-api</artifactId>-->
-                <!--<version>${sl4jApi.version}</version>-->
-            <!--</dependency>-->
-            <!--<dependency>-->
-                <!--<groupId>ch.qos.logback</groupId>-->
-                <!--<artifactId>logback-classic</artifactId>-->
-                <!--<version>${logbackClassic.version}</version>-->
-                <!--<scope>test</scope>-->
-            <!--</dependency>-->
-            <!--<dependency>-->
-                <!--<groupId>ch.qos.logback</groupId>-->
-                <!--<artifactId>logback-core</artifactId>-->
-                <!--<version>${logbackCore.version}</version>-->
-            <!--</dependency>-->
         </dependencies>
     </dependencyManagement>
 
+
     <build>
         <finalName>BookFinder</finalName>
+        <plugins>
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+            </plugin>
+        </plugins>
     </build>
+
 </project>

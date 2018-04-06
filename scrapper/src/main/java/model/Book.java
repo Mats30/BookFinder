@@ -6,8 +6,8 @@ import java.util.Objects;
 public class Book {
     private final String title;
     private final String author;
-    private final BigDecimal newPrice;
-    private final BigDecimal oldPrice;
+    private final long newPrice;
+    private final long oldPrice;
     private final String url;
     private final String bookstore;
     private final BookType type;
@@ -45,8 +45,8 @@ public class Book {
     public static class Builder {
         private String title;
         private String author;
-        private BigDecimal newPrice;
-        private BigDecimal oldPrice;
+        private long newPrice;
+        private long oldPrice;
         private String url;
         private String bookstore;
         private BookType type;
@@ -61,12 +61,12 @@ public class Book {
             return this;
         }
 
-        public Builder withNewPrice(BigDecimal newPrice) {
+        public Builder withNewPrice(long newPrice) {
             this.newPrice = newPrice;
             return this;
         }
 
-        public Builder withOldPrice(BigDecimal oldPrice) {
+        public Builder withOldPrice(long oldPrice) {
             this.oldPrice = oldPrice;
             return this;
         }
