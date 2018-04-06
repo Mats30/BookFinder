@@ -1,6 +1,8 @@
 package scrapper.mapper;
 
 import model.Book;
+import model.BookType;
+import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -24,9 +26,46 @@ class EbookpointMapper implements Mapper {
                         .withTitle(e.select("h3").first().child(0).text())
                         .withBookStore("ebookpoint")
                         .withURL(e.select("h3").first().child(0).attr("href"))
-                        .withNewPrice(Long.parseLong(e.select(".changeFormat2").first().attr("price").replace(".","")))
-                        .withOldPrice(Long.parseLong(e.select(".changeFormat2").first().attr("constprice").replace(".","")))
+                        .withType(mapType(e))
+                        .withNewPrice(getNewPrice(e))
+                        .withOldPrice(getOldPrice(e))
                         .build())
                 .collect(Collectors.toList());
+    }
+
+    private BookType mapType(Element e) {
+        Elements bookContent = e.select(".changeFormat2");
+        long ebookPromo = Long.parseLong(bookContent.first().attr("oszczedzasz").replace(".",""));
+        long paperPromo = Long.parseLong(bookContent.get(1).attr("oszczedzasz").replace(".",""));
+
+        if (ebookPromo > paperPromo) {
+             if (bookContent.select("span").get(1).text().equals("PDF + Epub + Mobi")) return BookType.MOBI_EPUB_PDF;
+             else if (bookContent.select("span").get(1).text().equals("PDF")) return BookType.PDF;
+             else return BookType.MOBI;
+        } else return BookType.PAPER;
+    }
+
+    private long getNewPrice(Element e) {
+        Elements bookContent = e.select(".changeFormat2");
+        long ebookPromo = Long.parseLong(bookContent.first().attr("oszczedzasz").replace(".",""));
+        long paperPromo = Long.parseLong(bookContent.get(1).attr("oszczedzasz").replace(".",""));
+
+        if (ebookPromo > paperPromo) {
+            return Long.parseLong(bookContent.first().attr("price").replace(".",""));
+        } else {
+            return Long.parseLong(bookContent.get(1).attr("price").replace(".",""));
+        }
+    }
+
+    private long getOldPrice(Element e) {
+        Elements bookContent = e.select(".changeFormat2");
+        long ebookPromo = Long.parseLong(bookContent.first().attr("oszczedzasz").replace(".",""));
+        long paperPromo = Long.parseLong(bookContent.get(1).attr("oszczedzasz").replace(".",""));
+
+        if (ebookPromo > paperPromo) {
+            return Long.parseLong(bookContent.first().attr("constprice").replace(".",""));
+        } else {
+            return Long.parseLong(bookContent.get(1).attr("constprice").replace(".",""));
+        }
     }
 }

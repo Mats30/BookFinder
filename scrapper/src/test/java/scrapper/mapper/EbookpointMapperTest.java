@@ -1,6 +1,7 @@
 package scrapper.mapper;
 
 import model.Book;
+import model.BookType;
 import org.jsoup.Jsoup;
 import org.jsoup.select.Elements;
 import org.junit.jupiter.api.Test;
@@ -32,6 +33,7 @@ class EbookpointMapperTest {
                 .withTitle("Górskie wyprawy fotograficzne")
                 .withBookStore("ebookpoint")
                 .withURL("//ebookpoint.pl/ksiazki/gorskie-wyprawy-fotograficzne-karol-nienartowicz,gowyfo.htm")
+                .withType(BookType.MOBI_EPUB_PDF)
                 .withOldPrice(Long.parseLong("59"))
                 .withNewPrice(Long.parseLong("472"))
                 .build();
@@ -40,6 +42,7 @@ class EbookpointMapperTest {
                 .withTitle("Algorytmy. Ilustrowany przewodnik")
                 .withBookStore("ebookpoint")
                 .withURL("//ebookpoint.pl/ksiazki/algorytmy-ilustrowany-przewodnik-aditya-bhargava,algoip.htm")
+                .withType(BookType.MOBI_EPUB_PDF)
                 .withOldPrice(Long.parseLong("5489"))
                 .withNewPrice(Long.parseLong("4391"))
                 .build();
@@ -49,6 +52,7 @@ class EbookpointMapperTest {
                 .withTitle("PHP. Obiekty, wzorce, narzędzia. Wydanie V")
                 .withBookStore("ebookpoint")
                 .withURL("//ebookpoint.pl/ksiazki/php-obiekty-wzorce-narzedzia-wydanie-v-matt-zandstra,phpob5.htm")
+                .withType(BookType.MOBI_EPUB_PDF)
                 .withOldPrice(Long.parseLong("89"))
                 .withNewPrice(Long.parseLong("712"))
                 .build();
@@ -58,6 +62,7 @@ class EbookpointMapperTest {
                 .withTitle("Windows 7 PL. Pierwsza pomoc")
                 .withBookStore("ebookpoint")
                 .withURL("//ebookpoint.pl/ksiazki/windows-7-pl-pierwsza-pomoc-adam-jozefiok,win7pp.htm")
+                .withType(BookType.PDF)
                 .withOldPrice(Long.parseLong("179"))
                 .withNewPrice(Long.parseLong("1432"))
                 .build();

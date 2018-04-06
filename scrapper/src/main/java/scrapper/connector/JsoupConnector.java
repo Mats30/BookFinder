@@ -15,13 +15,22 @@ class JsoupConnector implements LibConnector {
     private static final Logger LOG = LoggerFactory.getLogger(JsoupConnector.class);
 
     public Optional<Document> connect(String url) {
-        try {
-            Connection connection = Jsoup.connect(url);
-            connection.userAgent("Mozilla/5.0");
-            return Optional.of(connection.get());
-        } catch (IOException exception) {
-            LOG.error(exception.getMessage());
-        }
-        return Optional.empty();
+        Optional<Document> document = Optional.empty();
+
+
+        boolean isScrappedCorrect = false;
+
+        do {
+            try {
+                Connection connection = Jsoup.connect(url);
+                connection.userAgent("Mozilla/5.0");
+                document = Optional.of(connection.get());
+                isScrappedCorrect = true;
+            } catch (IOException exception) {
+                LOG.error(exception.getMessage());
+                LOG.info("Scrapper will be run once again");
+            }
+        } while (!isScrappedCorrect);
+        return document;
     }
 }

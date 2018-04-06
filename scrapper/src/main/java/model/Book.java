@@ -54,10 +54,10 @@ public class Book {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Book book = (Book) o;
-        return Objects.equals(title, book.title) &&
+        return newPrice == book.newPrice &&
+                oldPrice == book.oldPrice &&
+                Objects.equals(title, book.title) &&
                 Objects.equals(author, book.author) &&
-                Objects.equals(newPrice, book.newPrice) &&
-                Objects.equals(oldPrice, book.oldPrice) &&
                 Objects.equals(url, book.url) &&
                 Objects.equals(bookstore, book.bookstore) &&
                 type == book.type;
@@ -65,7 +65,21 @@ public class Book {
 
     @Override
     public int hashCode() {
+
         return Objects.hash(title, author, newPrice, oldPrice, url, bookstore, type);
+    }
+
+    @Override
+    public String toString() {
+        return "Book{" +
+                "title='" + title + '\'' +
+                ", author='" + author + '\'' +
+                ", newPrice=" + newPrice +
+                ", oldPrice=" + oldPrice +
+                ", url='" + url + '\'' +
+                ", bookstore='" + bookstore + '\'' +
+                ", type=" + type +
+                '}';
     }
 
 
@@ -120,9 +134,5 @@ public class Book {
 
 
 
-    @Override
-    public String toString() {
-        return String.format("%s - %s", this.author, this.title);
-    }
 
 }
