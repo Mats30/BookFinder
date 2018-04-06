@@ -8,7 +8,7 @@ import scrapper.service.ScrapperService;
 
 import java.util.List;
 
-@RestController
+@RestController("/books")
 public class BookController {
 
     private final ScrapperService scrapper;
