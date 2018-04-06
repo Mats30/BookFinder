@@ -1,5 +1,6 @@
 package scrapper.connector;
 
+import org.jsoup.Connection;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.slf4j.Logger;
@@ -15,7 +16,9 @@ class JsoupConnector implements LibConnector {
 
     public Optional<Document> connect(String url) {
         try {
-            return Optional.of(Jsoup.connect(url).get());
+            Connection connection = Jsoup.connect(url);
+            connection.userAgent("Mozilla/5.0");
+            return Optional.of(connection.get());
         } catch (IOException exception) {
             LOG.error(exception.getMessage());
         }

@@ -1,6 +1,5 @@
 package model;
 
-import java.math.BigDecimal;
 import java.util.Objects;
 
 public class Book {
@@ -20,6 +19,34 @@ public class Book {
         url = bookBuilder.url;
         bookstore = bookBuilder.bookstore;
         type = bookBuilder.type;
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public String getAuthor() {
+        return author;
+    }
+
+    public long getNewPrice() {
+        return newPrice;
+    }
+
+    public long getOldPrice() {
+        return oldPrice;
+    }
+
+    public String getUrl() {
+        return url;
+    }
+
+    public String getBookstore() {
+        return bookstore;
+    }
+
+    public BookType getType() {
+        return type;
     }
 
     @Override

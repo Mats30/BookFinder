@@ -6,7 +6,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
 
-import java.math.BigDecimal;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -18,7 +17,7 @@ class EbookpointMapper implements Mapper {
     @Override
     public List<Book> map(final Elements parsedDivs) {
         return parsedDivs
-                .parallelStream()
+                .stream()
                 .filter(e -> !e.select(".changeFormat2").attr("oszczedzasz").equals("0"))
                 .map(e -> new Book.Builder()
                         .withAuthor(e.getElementsByClass("author").first().child(0).text())

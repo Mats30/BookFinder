@@ -46,9 +46,21 @@ public class EbookpointService implements ScrapperService {
                 }
             } catch (IOException e) {
                 LOG.error(e.getMessage());
+                return listOfAllBooks;
             }
         } else {
             LOG.error("Error in fetching ebookpoint site");
+        }
+        return listOfAllBooks;
+    }
+
+    @Override
+    public List<Book> get(int pageNumber) {
+        List<Book> listOfAllBooks = new ArrayList<>();
+        try {
+            listOfAllBooks.addAll(mapper.map(scrapper.scrap(EBOOKPOINT_BASE_URL + pageNumber)));
+        } catch (IOException e) {
+            LOG.error(e.getMessage());
         }
         return listOfAllBooks;
     }
