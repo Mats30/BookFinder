@@ -24,8 +24,8 @@ public class BookController {
         return scrapper.get(pageNumber);
     }
 
-//    @GetMapping
-//    public List<Book> getScrappedBooks() {
-//        return scrapper.getAll();
-//    }
+    @GetMapping
+    public List<Book> getScrappedBooks() {
+        return scrapper.getAll();
+    }
 }

@@ -26,6 +26,7 @@ class JsoupConnector implements LibConnector {
                 connection.userAgent("Mozilla/5.0");
                 document = Optional.of(connection.get());
                 isScrappedCorrect = true;
+                LOG.info(String.format("Connected to given URL: %s", url));
             } catch (IOException exception) {
                 LOG.error(exception.getMessage());
                 LOG.info("Scrapper will be run once again");
