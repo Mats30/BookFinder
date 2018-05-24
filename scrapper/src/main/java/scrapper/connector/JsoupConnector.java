@@ -16,8 +16,6 @@ class JsoupConnector implements LibConnector {
 
     public Optional<Document> connect(String url) {
         Optional<Document> document = Optional.empty();
-
-
         boolean isScrappedCorrect = false;
 
         do {
