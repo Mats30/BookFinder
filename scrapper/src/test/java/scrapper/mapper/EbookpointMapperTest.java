@@ -14,7 +14,7 @@ import java.util.List;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class EbookpointMapperTest {
-    private static final String TEST_FILE_PATH = "src/test/resources/informatyka.1";
+    private static final String TEST_FILE_PATH = "src/test/resources/informatyka.html";
     private EbookpointMapper mapper = new EbookpointMapper();
     private File testFile = new File(TEST_FILE_PATH);
 

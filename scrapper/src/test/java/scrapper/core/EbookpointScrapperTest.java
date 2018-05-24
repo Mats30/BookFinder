@@ -8,7 +8,7 @@ import java.io.File;
 import java.io.IOException;
 
 class EbookpointScrapperTest {
-    private static final String PATH = "src/test/resources/informatyka.1";
+    private static final String PATH = "src/test/resources/informatyka.html";
     private EbookpointScrapper scrapper = new EbookpointScrapper();
 
     @Test
