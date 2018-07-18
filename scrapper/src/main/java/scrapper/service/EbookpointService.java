@@ -1,7 +1,6 @@
 package scrapper.service;
 
 import model.Book;
-import org.jsoup.nodes.Document;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,10 +10,8 @@ import scrapper.core.Detailer;
 import scrapper.core.Scrapper;
 import scrapper.mapper.Mapper;
 
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 
 @Service
 public class EbookpointService implements ScrapperService {
@@ -34,34 +31,24 @@ public class EbookpointService implements ScrapperService {
     }
 
     @Override
-    public List<Book> scrappAll() {
+    public List<Book> scrapAll() {
         List<Book> listOfAllBooks = new ArrayList<>();
-        Optional<Document> document = connector.connect(EBOOKPOINT_BASE_URL);
-        if (document.isPresent()) {
-            Document doc = document.get();
-            int numberOfPages = detailer.scrapPagesNumber(doc);
-            try {
-                for (int i = 1; i <= numberOfPages; i++) {
-                    listOfAllBooks.addAll(mapper.map(scrapper.scrap(EBOOKPOINT_BASE_URL + i)));
-                }
-            } catch (IOException e) {
-                LOG.error(e.getMessage());
-                return listOfAllBooks;
-            }
-        } else {
-            LOG.error("Error in fetching ebookpoint site");
+        int numberOfPages = connector
+                .connect(EBOOKPOINT_BASE_URL)
+                .map(detailer::scrapPagesNumber)
+                .orElse(0);
+
+        for (int i = 1; i <= numberOfPages; i++) {
+            listOfAllBooks.addAll(mapper.map(scrapper.scrap(EBOOKPOINT_BASE_URL + i)));
         }
+
         return listOfAllBooks;
     }
 
     @Override
-    public List<Book> scrapp(int pageNumber) {
+    public List<Book> scrap(int pageNumber) {
         List<Book> listOfAllBooks = new ArrayList<>();
-        try {
-            listOfAllBooks.addAll(mapper.map(scrapper.scrap(EBOOKPOINT_BASE_URL + pageNumber)));
-        } catch (IOException e) {
-            LOG.error(e.getMessage());
-        }
+        listOfAllBooks.addAll(mapper.map(scrapper.scrap(EBOOKPOINT_BASE_URL + pageNumber)));
         return listOfAllBooks;
     }
 }
