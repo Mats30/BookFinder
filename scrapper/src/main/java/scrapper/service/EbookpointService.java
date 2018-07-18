@@ -34,12 +34,12 @@ public class EbookpointService implements ScrapperService {
     }
 
     @Override
-    public List<Book> getAll() {
+    public List<Book> scrappAll() {
         List<Book> listOfAllBooks = new ArrayList<>();
         Optional<Document> document = connector.connect(EBOOKPOINT_BASE_URL);
         if (document.isPresent()) {
             Document doc = document.get();
-            int numberOfPages = detailer.getPagesNumber(doc);
+            int numberOfPages = detailer.scrapPagesNumber(doc);
             try {
                 for (int i = 1; i <= numberOfPages; i++) {
                     listOfAllBooks.addAll(mapper.map(scrapper.scrap(EBOOKPOINT_BASE_URL + i)));
@@ -55,7 +55,7 @@ public class EbookpointService implements ScrapperService {
     }
 
     @Override
-    public List<Book> get(int pageNumber) {
+    public List<Book> scrapp(int pageNumber) {
         List<Book> listOfAllBooks = new ArrayList<>();
         try {
             listOfAllBooks.addAll(mapper.map(scrapper.scrap(EBOOKPOINT_BASE_URL + pageNumber)));

@@ -21,11 +21,11 @@ public class BookController {
 
     @GetMapping("/books/{pageNumber}")
     public List<Book> getOnePageScrappedBooks(@PathVariable(name = "pageNumber") int pageNumber) {
-        return scrapper.get(pageNumber);
+        return scrapper.scrapp(pageNumber);
     }
 
     @GetMapping
     public List<Book> getScrappedBooks() {
-        return scrapper.getAll();
+        return scrapper.scrappAll();
     }
 }

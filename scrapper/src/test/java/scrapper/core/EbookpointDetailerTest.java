@@ -15,7 +15,7 @@ class EbookpointDetailerTest {
     @Test
     void fetchPagesNumberFromFileWithSourceCodeOfEbookpointSite() throws IOException {
         File file = new File(DESTINATION);
-        int pages = detailer.getPagesNumber(Jsoup.parse(file, "UTF-8"));
+        int pages = detailer.scrapPagesNumber(Jsoup.parse(file, "UTF-8"));
         assertThat(pages).isEqualTo(27);
     }
 }
