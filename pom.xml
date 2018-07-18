@@ -19,12 +19,13 @@
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
-        <java.version>9</java.version>
+        <java.version>10</java.version>
         <!--JAVAX-->
         <javax-servlet.version>4.0.0</javax-servlet.version>
         <!--SPRING-->
         <spring-boot.version>2.0.0.RELEASE</spring-boot.version>
         <spring-data-rest.version>3.0.5.RELEASE</spring-data-rest.version>
+        <spring-kafka.version>2.1.7.RELEASE</spring-kafka.version>
         <!--TESTING DEPENDENCIES VERSIONS-->
         <junit.version>5.1.0</junit.version>
         <assertj.version>3.9.1</assertj.version>
@@ -64,6 +65,11 @@
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-starter-actuator</artifactId>
                 <version>${spring-boot.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.springframework.kafka</groupId>
+                <artifactId>spring-kafka</artifactId>
+                <version>${spring-kafka.version}</version>
             </dependency>
             <!--TESTING DEPENDENCIES-->
             <dependency>

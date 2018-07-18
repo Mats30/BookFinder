@@ -8,8 +8,7 @@ import java.util.Optional;
 
 @Component
 class EbookpointDetailer implements Detailer {
-
-    public static final String PAGES_NUMBER_CLASS = "pozycjaStronicowania";
+    private static final String PAGES_NUMBER_CLASS = "pozycjaStronicowania";
 
     @Override
     public int getPagesNumber(Document page) {

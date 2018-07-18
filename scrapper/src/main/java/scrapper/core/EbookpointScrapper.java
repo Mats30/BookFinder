@@ -6,7 +6,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import scrapper.connector.LibConnector;
 
-import java.io.File;
 import java.util.Optional;
 
 @Component

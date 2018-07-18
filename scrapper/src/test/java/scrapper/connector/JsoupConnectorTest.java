@@ -21,17 +21,4 @@ class JsoupConnectorTest {
         assertThat(document).isNotEqualTo(Optional.empty());
     }
 
-    @Disabled
-    @Test
-    void connectToSiteWithInvalidURL_shouldReturnEmptyOptionalContainer() {
-        Optional<Document> document = jsoupConnector.connect("invalid_url");
-        assertThat(document).isEqualTo(Optional.empty());
-    }
-
-    @Disabled
-    @Test
-    void connectToSiteWithEmptyURL_shouldReturnEmptyOptionalContainer() {
-        Optional<Document> document = jsoupConnector.connect("");
-        assertThat(document).isEqualTo(Optional.empty());
-    }
 }

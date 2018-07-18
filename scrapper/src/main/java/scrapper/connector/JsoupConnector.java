@@ -7,8 +7,8 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
 
-import java.io.IOException;
 import java.util.Optional;
+import java.io.IOException;
 
 @Component
 class JsoupConnector implements LibConnector {
@@ -27,7 +27,7 @@ class JsoupConnector implements LibConnector {
                 LOG.info(String.format("Connected to given URL: %s", url));
             } catch (IOException exception) {
                 LOG.error(exception.getMessage());
-                LOG.info("Scrapper will be run once again");
+                LOG.info("Scrapper will run once again");
             }
         } while (!isScrappedCorrect);
         return document;
