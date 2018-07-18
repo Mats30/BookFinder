@@ -1,15 +1,13 @@
 package scrapper.core;
 
-import org.jsoup.nodes.Document;
 import org.jsoup.select.Elements;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import scrapper.connector.LibConnector;
 
-import java.util.Optional;
-
 @Component
-class EbookpointScrapper implements Scrapper {
+final class EbookpointScrapper implements Scrapper {
+    private static final String PRESALE_CSS_CLASS = "classPresale";
     private LibConnector connector;
 
     @Autowired
@@ -17,12 +15,15 @@ class EbookpointScrapper implements Scrapper {
         this.connector = connector;
     }
 
+    /**
+     * @param url address of website to parse
+     * @return elements containing books if present, else empty list of elements
+     */
+    @Override
     public Elements scrap(String url) {
-        Optional<Document> htmlPage = connector.connect(url);
-        Elements elements = null;
-        if (htmlPage.isPresent()) {
-            elements = htmlPage.get().getElementsByClass("classPresale");
-        }
-        return elements;
+        return connector
+                .connect(url)
+                .map(e -> e.getElementsByClass(PRESALE_CSS_CLASS))
+                .orElse(new Elements().empty());
     }
 }

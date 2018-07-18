@@ -4,7 +4,7 @@ import org.jsoup.nodes.Document;
 import org.springframework.stereotype.Component;
 
 @Component
-class EbookpointDetailer implements Detailer {
+final class EbookpointDetailer implements Detailer {
     private static final String PAGES_NUMBER_CSS_CLASS = "pozycjaStronicowania";
     private static final String URL_ATTRIBUTE = "href";
     private static final String NEXT_PAGE_BUTTON_TEXT = ">";
