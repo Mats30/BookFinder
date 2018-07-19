@@ -16,20 +16,14 @@ class JsoupConnector implements LibConnector {
 
     public Optional<Document> connect(String url) {
         Optional<Document> document = Optional.empty();
-        boolean isScrappedCorrect = false;
-
-        do {
-            try {
-                Connection connection = Jsoup.connect(url);
-                connection.userAgent("Mozilla/5.0");
-                document = Optional.of(connection.get());
-                isScrappedCorrect = true;
-                LOG.info(String.format("Connected to given URL: %s", url));
-            } catch (IOException exception) {
-                LOG.error(exception.getMessage());
-                LOG.info("Scrapper will run once again");
-            }
-        } while (!isScrappedCorrect);
+        try {
+            Connection connection = Jsoup.connect(url);
+            connection.userAgent("Mozilla/5.0");
+            document = Optional.of(connection.get());
+            LOG.info(String.format("Connected to given URL: %s", url));
+        } catch (IOException exception) {
+            LOG.error(exception.getMessage());
+        }
         return document;
     }
 }

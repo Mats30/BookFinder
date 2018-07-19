@@ -12,6 +12,9 @@ import scrapper.mapper.Mapper;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.IntStream;
+import java.util.stream.Stream;
 
 @Service
 public class EbookpointService implements ScrapperService {
@@ -32,23 +35,23 @@ public class EbookpointService implements ScrapperService {
 
     @Override
     public List<Book> scrapAll() {
-        List<Book> listOfAllBooks = new ArrayList<>();
         int numberOfPages = connector
                 .connect(EBOOKPOINT_BASE_URL)
                 .map(detailer::scrapPagesNumber)
                 .orElse(0);
 
-        for (int i = 1; i <= numberOfPages; i++) {
-            listOfAllBooks.addAll(mapper.map(scrapper.scrap(EBOOKPOINT_BASE_URL + i)));
-        }
-
-        return listOfAllBooks;
+        return IntStream.rangeClosed(1, numberOfPages)
+                .mapToObj(value -> scrapper.scrap(EBOOKPOINT_BASE_URL + value))
+                .map(mapper::map)
+                .flatMap(List::stream)
+                .collect(Collectors.toList());
     }
 
     @Override
     public List<Book> scrap(int pageNumber) {
-        List<Book> listOfAllBooks = new ArrayList<>();
-        listOfAllBooks.addAll(mapper.map(scrapper.scrap(EBOOKPOINT_BASE_URL + pageNumber)));
-        return listOfAllBooks;
+        return Stream.of(scrapper.scrap(EBOOKPOINT_BASE_URL + pageNumber))
+                .map(mapper::map)
+                .flatMap(List::stream)
+                .collect(Collectors.toList());
     }
 }

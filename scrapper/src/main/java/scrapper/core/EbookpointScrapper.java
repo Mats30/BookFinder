@@ -16,13 +16,13 @@ final class EbookpointScrapper implements Scrapper {
     }
 
     /**
-     * @param content address of website to parse
+     * @param url address of website to parse
      * @return elements containing books if present, else empty list of elements
      */
     @Override
-    public Elements scrap(String content) {
+    public Elements scrap(String url) {
         return connector
-                .connect(content)
+                .connect(url)
                 .map(e -> e.getElementsByClass(PRESALE_CSS_CLASS))
                 .orElse(new Elements().empty());
     }
