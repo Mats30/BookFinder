@@ -11,7 +11,7 @@ import java.util.Optional;
 import java.io.IOException;
 
 @Component
-class JsoupConnector implements LibConnector {
+final class JsoupConnector implements LibConnector {
     private static final Logger LOG = LoggerFactory.getLogger(JsoupConnector.class);
 
     public Optional<Document> connect(String url) {

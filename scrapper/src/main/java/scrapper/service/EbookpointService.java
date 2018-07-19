@@ -1,8 +1,6 @@
 package scrapper.service;
 
 import model.Book;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import scrapper.connector.LibConnector;
@@ -10,15 +8,13 @@ import scrapper.core.Detailer;
 import scrapper.core.Scrapper;
 import scrapper.mapper.Mapper;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 import java.util.stream.Stream;
 
 @Service
-public class EbookpointService implements ScrapperService {
-    private static final Logger LOG = LoggerFactory.getLogger(EbookpointService.class);
+final class EbookpointService implements ScrapperService {
     private static final String EBOOKPOINT_BASE_URL = "https://ebookpoint.pl/kategorie/informatyka/";
     private final Detailer detailer;
     private final Scrapper scrapper;

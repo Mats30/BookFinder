@@ -5,8 +5,8 @@ import java.util.Objects;
 public class Book {
     private final String title;
     private final String author;
-    private final long newPrice;
-    private final long oldPrice;
+    private final double newPrice;
+    private final double oldPrice;
     private final String url;
     private final String bookstore;
     private final BookType type;
@@ -29,11 +29,11 @@ public class Book {
         return author;
     }
 
-    public long getNewPrice() {
+    public double getNewPrice() {
         return newPrice;
     }
 
-    public long getOldPrice() {
+    public double getOldPrice() {
         return oldPrice;
     }
 
@@ -85,8 +85,8 @@ public class Book {
     public static class Builder {
         private String title;
         private String author;
-        private long newPrice;
-        private long oldPrice;
+        private double newPrice;
+        private double oldPrice;
         private String url;
         private String bookstore;
         private BookType type;
@@ -101,12 +101,12 @@ public class Book {
             return this;
         }
 
-        public Builder withNewPrice(long newPrice) {
+        public Builder withNewPrice(double newPrice) {
             this.newPrice = newPrice;
             return this;
         }
 
-        public Builder withOldPrice(long oldPrice) {
+        public Builder withOldPrice(double oldPrice) {
             this.oldPrice = oldPrice;
             return this;
         }
