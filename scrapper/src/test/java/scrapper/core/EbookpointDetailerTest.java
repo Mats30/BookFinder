@@ -14,7 +14,7 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 
 class EbookpointDetailerTest {
     private static final String PATH = "src/test/resources/test_page.html";
-    private EbookpointDetailer detailer = new EbookpointDetailer();
+    private Detailer detailer = new EbookpointDetailer();
 
     @Test
     void fetchPagesNumberFromFileWithSourceCodeOfEbookpointSite() throws IOException {

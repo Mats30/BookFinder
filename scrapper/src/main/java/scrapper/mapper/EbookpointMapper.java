@@ -9,6 +9,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import scrapper.mapper.price.PriceMapper;
+import scrapper.mapper.type.TypeMapper;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -25,12 +26,13 @@ final class EbookpointMapper implements Mapper {
     private static final String DISCOUNT_ATTRIBUTE = "oszczedzasz";
 
     private PriceMapper priceMapper;
+    private TypeMapper typeMapper;
 
     @Autowired
-    public EbookpointMapper(PriceMapper ebookpointPriceMapper) {
+    public EbookpointMapper(PriceMapper ebookpointPriceMapper, TypeMapper ebookpointTypeMapper) {
         this.priceMapper = ebookpointPriceMapper;
+        this.typeMapper = ebookpointTypeMapper;
     }
-
 
     @Override
     public List<Book> map(final Elements parsedDivs) {
@@ -45,40 +47,10 @@ final class EbookpointMapper implements Mapper {
                         .withTitle(e.select("h3").first().child(0).text())
                         .withBookStore(STORE_NAME)
                         .withURL(e.select("h3").first().child(0).attr("href"))
-                        .withType(mapType(e))
+                        .withType(typeMapper.mapType(e))
                         .withNewPrice(priceMapper.scrapPrice(e, NEW_PRICE_KEY))
                         .withOldPrice(priceMapper.scrapPrice(e, OLD_PRICE_KEY))
                         .build())
                 .collect(Collectors.toList());
     }
-
-    private BookType mapType(Element element) {
-        Elements bookContent = element.select(BOOK_CSS_CLASS);
-        List<Double> prices = priceMapper.parseBooksPrices(bookContent);
-        BookType type = BookType.PAPER;
-        if (prices.size() > 1 && (prices.get(0) > prices.get(1))) {
-            type = getEbookPacketType(bookContent);
-        } else if (!isPaperType(bookContent)) {
-            type = getEbookSingleType(bookContent);
-        }
-        return type;
-    }
-
-    private BookType getEbookPacketType(Elements books) {
-        if (books.select("span").get(1).text().equals("PDF + Epub + Mobi")) return BookType.MOBI_EPUB_PDF;
-        else if (books.select("span").get(1).text().equals("PDF")) return BookType.PDF;
-        return BookType.MOBI;
-    }
-
-    private BookType getEbookSingleType(Elements books) {
-        if (books.select("span").first().text().equals("PDF + Epub + Mobi")) return BookType.MOBI_EPUB_PDF;
-        else if (books.select("span").first().text().equals("Epub + Mobi")) return BookType.EPUB_MOBI;
-        else if (books.select("span").first().text().equals("PDF")) return BookType.PDF;
-        return BookType.MOBI;
-    }
-
-    private boolean isPaperType(Elements books) {
-        return books.select("span").get(0).text().equals("Druk");
-    }
-
 }

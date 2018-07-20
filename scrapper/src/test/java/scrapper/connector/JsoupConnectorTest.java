@@ -6,13 +6,16 @@ import org.junit.jupiter.api.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.io.IOException;
 import java.util.Optional;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.mockito.Matchers.anyString;
+import static org.mockito.Mockito.when;
 
 class JsoupConnectorTest {
     private static final Logger LOG = LoggerFactory.getLogger(JsoupConnectorTest.class);
-    private JsoupConnector jsoupConnector  = new JsoupConnector();
+    private LibConnector jsoupConnector  = new JsoupConnector();
 
     @Test
     void connectToEbookpointSiteWithValidURL() {
