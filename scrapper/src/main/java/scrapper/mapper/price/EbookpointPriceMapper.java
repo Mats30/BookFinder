@@ -9,7 +9,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @Component
-class EbookpointPriceMapper implements PriceMapper {
+final class EbookpointPriceMapper implements PriceMapper {
     private static final String BOOK_CSS_CLASS = ".changeFormat2";
     private static final String DISCOUNT_ATTRIBUTE = "oszczedzasz";
 
