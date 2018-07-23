@@ -17,7 +17,7 @@ import static org.mockito.Mockito.when;
 
 class EbookpointScrapperTest {
     private final Logger LOG = LoggerFactory.getLogger(EbookpointScrapperTest.class);
-    private static final String PATH = "src/test/resources/test_page.html";
+    private static final String PATH = "src/test/resources/ebookpoint_test_page.html";
     private EbookpointScrapper scrapper = new EbookpointScrapper();
 
     @Test

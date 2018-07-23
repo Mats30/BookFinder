@@ -18,7 +18,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 class EbookpointTypeMapperTest {
     private static final Logger LOG = LoggerFactory.getLogger(EbookpointTypeMapper.class);
-    private static final String PARSED_BOOKS_FILE_PATH = "src/test/resources/parsed_books.html";
+    private static final String PARSED_BOOKS_FILE_PATH = "src/test/resources/ebookpoint_parsed_books.html";
     private static final String PRESALE_CSS_CLASS = ".classPresale";
     private EbookpointTypeMapper ebookpointTypeMapper = new EbookpointTypeMapper();
     private File parsedDivsFile = new File(PARSED_BOOKS_FILE_PATH);

@@ -18,7 +18,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 class EbookpointPriceMapperTest {
     private static final Logger LOG = LoggerFactory.getLogger(EbookpointPriceMapperTest.class);
-    private static final String PARSED_BOOKS_FILE_PATH = "src/test/resources/parsed_books.html";
+    private static final String PARSED_BOOKS_FILE_PATH = "src/test/resources/ebookpoint_parsed_books.html";
     private static final String PRESALE_CSS_CLASS = ".classPresale";
     private static final String NEW_PRICE_KEY = "price";
     private static final String OLD_PRICE_KEY = "constprice";

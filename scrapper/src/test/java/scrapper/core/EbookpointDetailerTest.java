@@ -13,7 +13,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
 class EbookpointDetailerTest {
-    private static final String PATH = "src/test/resources/test_page.html";
+    private static final String PATH = "src/test/resources/ebookpoint_test_page.html";
     private Detailer detailer = new EbookpointDetailer();
 
     @Test
