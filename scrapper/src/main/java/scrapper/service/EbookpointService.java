@@ -37,6 +37,7 @@ final class EbookpointService implements ScrapperService {
                 .orElse(0);
 
         return IntStream.rangeClosed(1, numberOfPages)
+                .parallel()
                 .mapToObj(value -> scrapper.scrap(EBOOKPOINT_BASE_URL + value))
                 .map(mapper::map)
                 .flatMap(List::stream)
