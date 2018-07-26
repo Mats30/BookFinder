@@ -14,7 +14,7 @@ final class EbookpointScrapper implements Scrapper {
     private LibConnector connector;
 
     @Autowired
-    public void setConnector(LibConnector connector) {
+    EbookpointScrapper(LibConnector connector) {
         this.connector = connector;
     }
 

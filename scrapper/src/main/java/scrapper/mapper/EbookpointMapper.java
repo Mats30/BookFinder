@@ -1,8 +1,6 @@
 package scrapper.mapper;
 
 import model.Book;
-import model.BookType;
-import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
