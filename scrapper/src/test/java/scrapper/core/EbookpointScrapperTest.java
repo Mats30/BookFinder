@@ -18,27 +18,24 @@ import static org.mockito.Mockito.when;
 class EbookpointScrapperTest {
     private final Logger LOG = LoggerFactory.getLogger(EbookpointScrapperTest.class);
     private static final String PATH = "src/test/resources/ebookpoint_test_page.html";
-    private EbookpointScrapper scrapper = new EbookpointScrapper();
+    private LibConnector connector = mock(LibConnector.class);
+    private EbookpointScrapper scrapper = new EbookpointScrapper(connector);
 
     @Test
     void scrapDefaultPageFromFile() {
         File testFile = new File(PATH);
-        LibConnector connector = mock(LibConnector.class);
         try {
             when(connector.connect(PATH)).thenReturn(Optional.of(Jsoup.parse(testFile, "UTF-8")));
         } catch (IOException e) {
             LOG.error(e.getMessage());
         }
-        scrapper.setConnector(connector);
         Elements bookDivs = scrapper.scrap(PATH);
         assertThat(bookDivs.size()).isEqualTo(5);
     }
 
     @Test
     void scrapMalformedPage_ExpectEmptyListOfElements() {
-        LibConnector connector = mock(LibConnector.class);
         when(connector.connect(PATH)).thenReturn(Optional.empty());
-        scrapper.setConnector(connector);
         Elements expectedBookDivs = scrapper.scrap(PATH);
         assertThat(expectedBookDivs).isEqualTo(new Elements().empty());
     }
