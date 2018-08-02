@@ -1,9 +1,6 @@
 package scrapper.service;
 
 import model.Book;
-import org.jsoup.nodes.Document;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import scrapper.connector.LibConnector;
@@ -11,14 +8,13 @@ import scrapper.core.Detailer;
 import scrapper.core.Scrapper;
 import scrapper.mapper.Mapper;
 
-import java.io.IOException;
-import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
+import java.util.stream.Collectors;
+import java.util.stream.IntStream;
+import java.util.stream.Stream;
 
 @Service
-public class EbookpointService implements ScrapperService {
-    private static final Logger LOG = LoggerFactory.getLogger(EbookpointService.class);
+final class EbookpointService implements ScrapperService {
     private static final String EBOOKPOINT_BASE_URL = "https://ebookpoint.pl/kategorie/informatyka/";
     private final Detailer detailer;
     private final Scrapper scrapper;
@@ -34,22 +30,24 @@ public class EbookpointService implements ScrapperService {
     }
 
     @Override
-    public List<Book> getAll() {
-        List<Book> listOfAllBooks = new ArrayList<>();
-        Optional<Document> document = connector.connect(EBOOKPOINT_BASE_URL);
-        if (document.isPresent()) {
-            Document doc = document.get();
-            int numberOfPages = detailer.getPagesNumber(doc);
-            try {
-                for (int i = 1; i <= numberOfPages; i++) {
-                    listOfAllBooks.addAll(mapper.map(scrapper.scrap(EBOOKPOINT_BASE_URL + i)));
-                }
-            } catch (IOException e) {
-                LOG.error(e.getMessage());
-            }
-        } else {
-            LOG.error("Error in fetching ebookpoint site");
-        }
-        return listOfAllBooks;
+    public List<Book> scrapAll() {
+        int numberOfPages = connector
+                .connect(EBOOKPOINT_BASE_URL)
+                .map(detailer::scrapPagesNumber)
+                .orElse(0);
+
+        return IntStream.rangeClosed(1, numberOfPages)
+                .mapToObj(value -> scrapper.scrap(EBOOKPOINT_BASE_URL + value))
+                .map(mapper::map)
+                .flatMap(List::stream)
+                .collect(Collectors.toList());
+    }
+
+    @Override
+    public List<Book> scrap(int pageNumber) {
+        return Stream.of(scrapper.scrap(EBOOKPOINT_BASE_URL + pageNumber))
+                .map(mapper::map)
+                .flatMap(List::stream)
+                .collect(Collectors.toList());
     }
 }

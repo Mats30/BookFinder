@@ -1,13 +1,12 @@
 package model;
 
-import java.math.BigDecimal;
 import java.util.Objects;
 
 public class Book {
     private final String title;
     private final String author;
-    private final BigDecimal newPrice;
-    private final BigDecimal oldPrice;
+    private final double newPrice;
+    private final double oldPrice;
     private final String url;
     private final String bookstore;
     private final BookType type;
@@ -22,15 +21,43 @@ public class Book {
         type = bookBuilder.type;
     }
 
+    public String getTitle() {
+        return title;
+    }
+
+    public String getAuthor() {
+        return author;
+    }
+
+    public double getNewPrice() {
+        return newPrice;
+    }
+
+    public double getOldPrice() {
+        return oldPrice;
+    }
+
+    public String getUrl() {
+        return url;
+    }
+
+    public String getBookstore() {
+        return bookstore;
+    }
+
+    public BookType getType() {
+        return type;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Book book = (Book) o;
-        return Objects.equals(title, book.title) &&
+        return newPrice == book.newPrice &&
+                oldPrice == book.oldPrice &&
+                Objects.equals(title, book.title) &&
                 Objects.equals(author, book.author) &&
-                Objects.equals(newPrice, book.newPrice) &&
-                Objects.equals(oldPrice, book.oldPrice) &&
                 Objects.equals(url, book.url) &&
                 Objects.equals(bookstore, book.bookstore) &&
                 type == book.type;
@@ -41,12 +68,25 @@ public class Book {
         return Objects.hash(title, author, newPrice, oldPrice, url, bookstore, type);
     }
 
+    @Override
+    public String toString() {
+        return "Book{" +
+                "title='" + title + '\'' +
+                ", author='" + author + '\'' +
+                ", newPrice=" + newPrice +
+                ", oldPrice=" + oldPrice +
+                ", url='" + url + '\'' +
+                ", bookstore='" + bookstore + '\'' +
+                ", type=" + type +
+                '}';
+    }
+
 
     public static class Builder {
         private String title;
         private String author;
-        private BigDecimal newPrice;
-        private BigDecimal oldPrice;
+        private double newPrice;
+        private double oldPrice;
         private String url;
         private String bookstore;
         private BookType type;
@@ -61,12 +101,12 @@ public class Book {
             return this;
         }
 
-        public Builder withNewPrice(BigDecimal newPrice) {
+        public Builder withNewPrice(double newPrice) {
             this.newPrice = newPrice;
             return this;
         }
 
-        public Builder withOldPrice(BigDecimal oldPrice) {
+        public Builder withOldPrice(double oldPrice) {
             this.oldPrice = oldPrice;
             return this;
         }
@@ -93,9 +133,5 @@ public class Book {
 
 
 
-    @Override
-    public String toString() {
-        return String.format("%s - %s", this.author, this.title);
-    }
 
 }

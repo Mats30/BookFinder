@@ -5,6 +5,7 @@ import model.Book;
 import java.util.List;
 
 public interface ScrapperService {
-    List<Book> getAll();
+    List<Book> scrapAll();
+    List<Book> scrap(int pageNumber);
 }
 
