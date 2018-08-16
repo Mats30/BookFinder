@@ -20,7 +20,7 @@ final class JsoupConnector implements LibConnector {
             Connection connection = Jsoup.connect(url);
             connection.userAgent("Mozilla/5.0");
             document = Optional.of(connection.get());
-            LOG.info(String.format("Connected to given URL: %s", url));
+            LOG.info("Connected to given URL: {}", url);
         } catch (IOException exception) {
             LOG.error(exception.getMessage());
         }

@@ -2,8 +2,6 @@ package scrapper.mapper;
 
 import model.Book;
 import org.jsoup.select.Elements;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import scrapper.mapper.price.PriceMapper;
@@ -14,7 +12,6 @@ import java.util.stream.Collectors;
 
 @Component
 final class EbookpointMapper implements Mapper {
-    private static final Logger LOG = LoggerFactory.getLogger(EbookpointMapper.class);
     private static final String STORE_NAME = "ebookpoint";
     private static final String NEW_PRICE_KEY = "price";
     private static final String OLD_PRICE_KEY = "constprice";
