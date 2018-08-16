@@ -1,14 +1,22 @@
 package model;
 
+import javax.persistence.*;
 import java.util.Objects;
 
+@Entity
 public class Book {
+    @Id
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    private Long id;
     private final String title;
     private final String author;
+    @Column(name = "new_price")
     private final double newPrice;
+    @Column(name = "old_price")
     private final double oldPrice;
     private final String url;
     private final String bookstore;
+    @Enumerated
     private final BookType type;
 
     private Book(Builder bookBuilder) {
@@ -130,8 +138,4 @@ public class Book {
             return new Book(this);
         }
     }
-
-
-
-
 }
