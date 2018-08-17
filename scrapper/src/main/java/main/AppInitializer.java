@@ -6,7 +6,7 @@ import org.springframework.context.annotation.ComponentScan;
 import org.springframework.scheduling.annotation.EnableScheduling;
 
 @SpringBootApplication
-@ComponentScan({"controllers", "scrapper"})
+@ComponentScan({"controllers", "scrapper", "configuration"})
 @EnableScheduling
 public class AppInitializer {
 
