@@ -16,7 +16,7 @@ public class Book {
     private final double oldPrice;
     private final String url;
     private final String bookstore;
-    @Enumerated
+    @Enumerated(EnumType.STRING)
     private final BookType type;
 
     private Book(Builder bookBuilder) {

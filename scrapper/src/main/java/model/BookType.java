@@ -2,8 +2,8 @@ package model;
 
 public enum BookType {
     PAPER,
+    PDF,
     MOBI,
     EPUB_MOBI,
-    PDF,
     MOBI_EPUB_PDF
 }
