@@ -49,4 +49,16 @@ public class BooksProvider {
 
         return List.of(first, second, third, fourth);
     }
+
+    public static Book provideOneBook() {
+        return new Book.Builder()
+                .withAuthor("Adam Józefiok")
+                .withTitle("Windows 7 PL. Pierwsza pomoc")
+                .withBookStore("ebookpoint")
+                .withURL("//ebookpoint.pl/ksiazki/windows-7-pl-pierwsza-pomoc-adam-jozefiok,win7pp.htm")
+                .withType(BookType.MOBI_EPUB_PDF)
+                .withOldPrice(20.0)
+                .withNewPrice(10.0)
+                .build();
+    }
 }
