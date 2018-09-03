@@ -3,7 +3,7 @@ package scrapper.service;
 import model.Book;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import repository.EntityRepository;
+import repository.BookRepository;
 import scrapper.connector.LibConnector;
 import scrapper.core.Detailer;
 import scrapper.core.Scrapper;
@@ -21,14 +21,14 @@ final class EbookpointService implements ScrapperService {
     private final Scrapper scrapper;
     private final Mapper mapper;
     private final LibConnector connector;
-    private final EntityRepository<Book> repository;
+    private final BookRepository repository;
 
     @Autowired
     public EbookpointService(Detailer detailer,
                              Scrapper scrapper,
                              Mapper mapper,
                              LibConnector connector,
-                             EntityRepository<Book> repository) {
+                             BookRepository repository) {
         this.detailer = detailer;
         this.scrapper = scrapper;
         this.mapper = mapper;
