@@ -6,7 +6,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.test.web.servlet.MockMvc;
 import providers.BooksProvider;
-import scrapper.service.ScrapperService;
+import repository.BookRepository;
 
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
@@ -20,9 +20,9 @@ class BookControllerTest {
     @Test
     void tryToGetOnePageOfBooks_ExpectProperJSON() {
         Gson gson = new Gson();
-        ScrapperService service = mock(ScrapperService.class);
-        when(service.scrapAll()).thenReturn(BooksProvider.provideAllBooksFromEbookpoint());
-        BookController bookController = new BookController(service);
+        BookRepository repository = mock(BookRepository.class);
+        when(repository.findAll()).thenReturn(BooksProvider.provideAllBooksFromEbookpoint());
+        BookController bookController = new BookController(repository);
         MockMvc mockMvc = standaloneSetup(bookController).build();
         try {
             mockMvc.perform(get("/books"))

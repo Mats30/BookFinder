@@ -2,6 +2,7 @@ package scrapper.service;
 
 import model.Book;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 import repository.BookRepository;
 import scrapper.connector.LibConnector;
@@ -36,14 +37,16 @@ final class EbookpointService implements ScrapperService {
         this.repository = repository;
     }
 
+
+    @Scheduled(cron = "0 0 0 * * *")
     @Override
-    public List<Book> scrapAll() {
+    public void scrapAll() {
         int numberOfPages = connector
                 .connect(EBOOKPOINT_BASE_URL)
                 .map(detailer::scrapPagesNumber)
                 .orElse(0);
 
-        return repository.saveAll(
+        repository.saveAll(
                 IntStream.rangeClosed(1, numberOfPages)
                         .parallel()
                         .mapToObj(value -> scrapper.scrap(EBOOKPOINT_BASE_URL + value))
