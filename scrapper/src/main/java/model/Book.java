@@ -9,13 +9,16 @@ public class Book {
     @Column(updatable = false, nullable = false)
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    @Column(nullable = false)
     private final String title;
     private final String author;
-    @Column(name = "new_price")
+    @Column(name = "new_price", nullable = false)
     private final double newPrice;
-    @Column(name = "old_price")
+    @Column(name = "old_price", nullable = false)
     private final double oldPrice;
+    @Column(nullable = false)
     private final String url;
+    @Column(nullable = false)
     private final String bookstore;
     @Enumerated(EnumType.STRING)
     private final BookType bookType;
