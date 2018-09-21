@@ -4,7 +4,6 @@ import model.Book;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import repository.BookRepository;
 
@@ -19,8 +18,7 @@ class BookServiceImpl implements BookService {
     }
 
     @Override
-    public ResponseEntity<Page<Book>> findPaginated(Pageable pageable) {
-        Page<Book> resultPage = repository.findAll(pageable);
-        return ResponseEntity.ok(resultPage);
+    public Page<Book> findPaginated(Pageable pageable) {
+        return repository.findAll(pageable);
     }
 }
