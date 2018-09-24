@@ -23,6 +23,8 @@
         <java.version>10</java.version>
         <!--JAVAX-->
         <javax-servlet.version>4.0.0</javax-servlet.version>
+        <jaxb.runtime-version>2.4.0-b180830.0438</jaxb.runtime-version>
+        <javax.activation-version>1.1.1</javax.activation-version>
         <!--SPRING-->
         <spring-boot.version>2.0.5.RELEASE</spring-boot.version>
         <spring-data-rest.version>3.0.5.RELEASE</spring-data-rest.version>
@@ -54,6 +56,16 @@
                 <groupId>javax.xml.bind</groupId>
                 <artifactId>jaxb-api</artifactId>
                 <version>2.3.0</version>
+            </dependency>
+            <dependency>
+                <groupId>org.glassfish.jaxb</groupId>
+                <artifactId>jaxb-runtime</artifactId>
+                <version>${jaxb.runtime-version}</version>
+            </dependency>
+            <dependency>
+                <groupId>javax.activation</groupId>
+                <artifactId>activation</artifactId>
+                <version>${javax.activation-version}</version>
             </dependency>
             <!--SPRING-BOOT-->
             <dependency>
