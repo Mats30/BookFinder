@@ -2,30 +2,27 @@ package controllers;
 
 import model.Book;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Pageable;
+import org.springframework.hateoas.PagedResources;
+import org.springframework.hateoas.Resource;
+import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
-import scrapper.service.ScrapperService;
-
-import java.util.List;
+import service.BookService;
 
 @RestController("/books")
 public class BookController {
-
-    private final ScrapperService scrapper;
+    private final BookPageResourceAssembler assembler;
+    private final BookService service;
 
     @Autowired
-    public BookController(ScrapperService scrapper) {
-        this.scrapper = scrapper;
+    public BookController(BookPageResourceAssembler assembler, BookService service) {
+        this.assembler = assembler;
+        this.service = service;
     }
 
-    @GetMapping("/books/{pageNumber}")
-    public List<Book> getOnePageScrappedBooks(@PathVariable(name = "pageNumber") int pageNumber) {
-        return scrapper.scrap(pageNumber);
-    }
-
-    @GetMapping
-    public List<Book> getScrappedBooks() {
-        return scrapper.scrapAll();
+    @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
+    public PagedResources<Resource<Book>> findScrappedBooks(final Pageable pageable) {
+        return assembler.toResource(service.findPaginated(pageable));
     }
 }

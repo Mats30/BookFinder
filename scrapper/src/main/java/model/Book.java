@@ -1,15 +1,37 @@
 package model;
 
+import javax.persistence.*;
 import java.util.Objects;
 
+@Entity
 public class Book {
+    @Id
+    @Column(updatable = false, nullable = false)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+    @Column(nullable = false)
     private final String title;
     private final String author;
+    @Column(name = "new_price", nullable = false)
     private final double newPrice;
+    @Column(name = "old_price", nullable = false)
     private final double oldPrice;
+    @Column(nullable = false)
     private final String url;
+    @Column(nullable = false)
     private final String bookstore;
-    private final BookType type;
+    @Enumerated(EnumType.STRING)
+    private final BookType bookType;
+
+    private Book() {
+        this.title = null;
+        this.author = null;
+        this.newPrice = 0;
+        this.oldPrice = 0;
+        this.url = null;
+        this.bookstore = null;
+        this.bookType = null;
+    }
 
     private Book(Builder bookBuilder) {
         title = bookBuilder.title;
@@ -18,7 +40,7 @@ public class Book {
         oldPrice = bookBuilder.oldPrice;
         url = bookBuilder.url;
         bookstore = bookBuilder.bookstore;
-        type = bookBuilder.type;
+        bookType = bookBuilder.bookType;
     }
 
     public String getTitle() {
@@ -45,8 +67,8 @@ public class Book {
         return bookstore;
     }
 
-    public BookType getType() {
-        return type;
+    public BookType getBookType() {
+        return bookType;
     }
 
     @Override
@@ -60,12 +82,12 @@ public class Book {
                 Objects.equals(author, book.author) &&
                 Objects.equals(url, book.url) &&
                 Objects.equals(bookstore, book.bookstore) &&
-                type == book.type;
+                bookType == book.bookType;
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(title, author, newPrice, oldPrice, url, bookstore, type);
+        return Objects.hash(title, author, newPrice, oldPrice, url, bookstore, bookType);
     }
 
     @Override
@@ -77,7 +99,7 @@ public class Book {
                 ", oldPrice=" + oldPrice +
                 ", url='" + url + '\'' +
                 ", bookstore='" + bookstore + '\'' +
-                ", type=" + type +
+                ", bookType=" + bookType +
                 '}';
     }
 
@@ -89,7 +111,7 @@ public class Book {
         private double oldPrice;
         private String url;
         private String bookstore;
-        private BookType type;
+        private BookType bookType;
 
         public Builder withTitle(String title) {
             this.title = title;
@@ -122,7 +144,7 @@ public class Book {
         }
 
         public Builder withType(BookType type) {
-            this.type = type;
+            this.bookType = type;
             return this;
         }
 
@@ -130,8 +152,4 @@ public class Book {
             return new Book(this);
         }
     }
-
-
-
-
 }
