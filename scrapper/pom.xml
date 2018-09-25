@@ -27,7 +27,7 @@
     <properties>
         <jsoup.version>1.11.2</jsoup.version>
         <h2.version>1.4.197</h2.version>
-        <postgresql.version>42.2.4</postgresql.version>
+        <postgresql.version>42.2.5</postgresql.version>
     </properties>
 
     <dependencies>
