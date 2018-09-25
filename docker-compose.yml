@@ -2,8 +2,9 @@ version: '3'
 services:
   scrapper:
     build: scrapper
-    image: BookFinder/scrapper
-
+    image: bookfinder/scrapper
+    deploy:
+      replicas: 2
   db:
     build: db
-    image: BookFinder/db
+    image: bookfinder/db
