@@ -5,6 +5,8 @@ services:
     image: bookfinder/scrapper
     deploy:
       replicas: 2
+    ports:
+      - "8080:8080"
   db:
     build: db
     image: bookfinder/db

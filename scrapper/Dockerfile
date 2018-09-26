@@ -16,8 +16,7 @@ RUN mvn verify
 
 FROM openjdk:10.0.2-jre
 
-ENTRYPOINT ["java", "-jar", "app.jar"]
-EXPOSE 8080
+ENTRYPOINT ["java", "-jar", "/app/BookFinder.jar"]
 
 WORKDIR /app
 COPY --from=build /home/lab/target .
