@@ -1,6 +1,8 @@
 language: java
 jdk: oraclejdk10
 install: true
+before_install:
+  - cd scrapper
 after_success:
   - mvn verify
   - bash <(curl -s https://codecov.io/bash)
