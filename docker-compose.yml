@@ -18,3 +18,6 @@ services:
       - POSTGRES_DB=scrapper
     ports:
       - "${POSTGRES_DB_PORT}:5432"
+  gateway:
+    build: gateway
+    image: bookfinder/gateway:latest
