@@ -1,4 +1,4 @@
-FROM openjdk:10.0.2-jdk as build
+FROM openjdk:10.0.2-jdk AS build
 
 RUN MAVEN_VERSION=3.5.0 \
  && cd /usr/share \
