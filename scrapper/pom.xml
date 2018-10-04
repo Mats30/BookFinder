@@ -15,7 +15,7 @@
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
-        <java.version>11</java.version>
+        <java.version>10</java.version>
         <!--JAVAX-->
         <javax-servlet.version>4.0.0</javax-servlet.version>
         <jaxb.runtime-version>2.4.0-b180830.0438</jaxb.runtime-version>
@@ -24,6 +24,7 @@
         <spring-boot.version>2.0.5.RELEASE</spring-boot.version>
         <spring-data-rest.version>3.0.5.RELEASE</spring-data-rest.version>
         <spring-kafka.version>2.1.7.RELEASE</spring-kafka.version>
+        <spring-cloud-eureka-client.version>2.0.1.RELEASE</spring-cloud-eureka-client.version>
         <!--TESTING DEPENDENCIES VERSIONS-->
         <junit.version>5.2.0</junit.version>
         <junit-platform.version>1.1.0</junit-platform.version>
@@ -92,6 +93,11 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-hateoas</artifactId>
             <version>${spring-boot.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-netflix-eureka-client</artifactId>
+            <version>${spring-cloud-eureka-client.version}</version>
         </dependency>
         <!--TESTING DEPENDENCIES-->
         <dependency>
@@ -165,6 +171,12 @@
             <version>${h2.version}</version>
             <scope>runtime</scope>
         </dependency>
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-commons</artifactId>
+            <version>2.0.1.RELEASE</version>
+            <scope>compile</scope>
+        </dependency>
     </dependencies>
 
     <build>
@@ -193,6 +205,11 @@
                         <version>${surefire-provider.version}</version>
                     </dependency>
                 </dependencies>
+                <configuration>
+                    <argLine>
+                        --illegal-access=permit
+                    </argLine>
+                </configuration>
             </plugin>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>

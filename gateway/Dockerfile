@@ -7,5 +7,6 @@ RUN mvn verify
 
 FROM openjdk:11-jre-slim
 ENTRYPOINT ["java", "-jar", "/app/gateway.jar"]
-WORKDIR /gateway
+WORKDIR /app
 COPY --from=build /home/gateway/target .
+EXPOSE 4000

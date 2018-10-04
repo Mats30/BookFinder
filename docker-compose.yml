@@ -21,3 +21,6 @@ services:
   gateway:
     build: gateway
     image: bookfinder/gateway:latest
+  discovery:
+    build: discovery
+    image: bookfinder/discovery:latest
