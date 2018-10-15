@@ -1,0 +1,14 @@
+spring:
+  application:
+    name: gateway
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://discovery:8761/eureka
+zuul:
+  routes:
+    scrapper:
+      path: /books/**
+      stripPrefix: false
+server:
+  port: 8765

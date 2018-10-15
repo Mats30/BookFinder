@@ -21,6 +21,7 @@
         <java.version>11</java.version>
         <maven-compiler-plugin.version>3.8.0</maven-compiler-plugin.version>
         <spring-cloud-zuul.version>2.0.1.RELEASE</spring-cloud-zuul.version>
+        <spring-cloud-eureka-client.version>2.0.1.RELEASE</spring-cloud-eureka-client.version>
     </properties>
 
     <dependencies>
@@ -28,6 +29,11 @@
             <groupId>org.springframework.cloud</groupId>
             <artifactId>spring-cloud-starter-netflix-zuul</artifactId>
             <version>${spring-cloud-zuul.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-netflix-eureka-client</artifactId>
+            <version>${spring-cloud-eureka-client.version}</version>
         </dependency>
     </dependencies>
 
@@ -44,7 +50,6 @@
                 <version>${maven-compiler-plugin.version}</version>
                 <configuration>
                     <release>11</release>
-
                 </configuration>
             </plugin>
         </plugins>

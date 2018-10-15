@@ -9,4 +9,4 @@ FROM openjdk:11-jre-slim
 ENTRYPOINT ["java", "-jar", "/app/gateway.jar"]
 WORKDIR /app
 COPY --from=build /home/gateway/target .
-EXPOSE 4000
+EXPOSE 8765

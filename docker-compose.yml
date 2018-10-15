@@ -5,8 +5,6 @@ services:
     image: bookfinder/scrapper:latest
     deploy:
       replicas: 2
-    ports:
-    - "${SCRAPPER_PORT}:8080"
     environment:
     - SPRING_PROFILES_ACTIVE=${ACTIVE_SCRAPPER_PROFILE}
   db:
@@ -16,13 +14,15 @@ services:
     - POSTGRES_USER=user
     - POSTGRES_DB=
     - POSTGRES_DB=scrapper
-    ports:
-    - "${POSTGRES_DB_PORT}:5432"
   gateway:
     build: gateway
     image: bookfinder/gateway:latest
+    ports:
+      - "${GATEWAY_PORT}:8765"
   discovery:
     build: discovery
     image: bookfinder/discovery:latest
+    environment:
+      - SERVER_PORT=${EUREKA_PORT}
     ports:
     - "8761:8761"
