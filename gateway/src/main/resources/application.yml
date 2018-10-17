@@ -10,5 +10,6 @@ zuul:
     scrapper:
       path: /books/**
       stripPrefix: false
+  ignoredServices: '*'
 server:
   port: 8765
