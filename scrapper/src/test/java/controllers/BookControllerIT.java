@@ -1,18 +1,22 @@
 package controllers;
 
 import com.google.gson.Gson;
+import main.AppInitializer;
 import model.Book;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestInstance;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableHandlerMethodArgumentResolver;
 import org.springframework.data.web.config.EnableSpringDataWebSupport;
+import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.test.web.servlet.MockMvc;
 import providers.BooksProvider;
 import service.BookService;
@@ -24,8 +28,8 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 import static org.springframework.test.web.servlet.setup.MockMvcBuilders.standaloneSetup;
 
+@SpringBootTest(classes = {AppInitializer.class})
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
-@EnableSpringDataWebSupport
 class BookControllerIT {
     private static final Logger LOG = LoggerFactory.getLogger(BookControllerIT.class);
     private MockMvc mockMvc;

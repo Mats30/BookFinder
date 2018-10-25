@@ -27,3 +27,4 @@ class EntityRepositoryIT {
         assertThat(repository.findAll().size()).isEqualTo(1);
     }
 }
+
