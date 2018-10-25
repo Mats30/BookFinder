@@ -15,7 +15,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 @SpringBootTest(classes = {AppInitializer.class})
 @ExtendWith(SpringExtension.class)
 @ActiveProfiles("dev")
-class EntityRepositoryTest {
+class EntityRepositoryIT {
 
     @Autowired
     BookRepository repository;

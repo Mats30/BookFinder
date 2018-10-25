@@ -14,13 +14,8 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableHandlerMethodArgumentResolver;
 import org.springframework.data.web.config.EnableSpringDataWebSupport;
 import org.springframework.test.web.servlet.MockMvc;
-import org.springframework.web.servlet.View;
-import org.springframework.web.servlet.ViewResolver;
-import org.springframework.web.servlet.view.json.MappingJackson2JsonView;
 import providers.BooksProvider;
 import service.BookService;
-
-import java.util.Locale;
 
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
@@ -31,8 +26,8 @@ import static org.springframework.test.web.servlet.setup.MockMvcBuilders.standal
 
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
 @EnableSpringDataWebSupport
-class BookControllerTest {
-    private static final Logger LOG = LoggerFactory.getLogger(BookControllerTest.class);
+class BookControllerIT {
+    private static final Logger LOG = LoggerFactory.getLogger(BookControllerIT.class);
     private MockMvc mockMvc;
     private Pageable pageRequest;
     private BookService service;
