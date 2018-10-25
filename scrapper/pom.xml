@@ -21,9 +21,9 @@
         <jaxb.runtime-version>2.4.0-b180830.0438</jaxb.runtime-version>
         <javax.activation-version>1.1.1</javax.activation-version>
         <!--SPRING-->
-        <spring-boot.version>2.0.5.RELEASE</spring-boot.version>
         <spring-data-rest.version>3.0.5.RELEASE</spring-data-rest.version>
         <spring-kafka.version>2.1.7.RELEASE</spring-kafka.version>
+        <spring-cloud-eureka-client.version>2.0.1.RELEASE</spring-cloud-eureka-client.version>
         <!--TESTING DEPENDENCIES VERSIONS-->
         <junit.version>5.2.0</junit.version>
         <junit-platform.version>1.1.0</junit-platform.version>
@@ -71,27 +71,27 @@
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
-            <version>${spring-boot.version}</version>
         </dependency>
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter</artifactId>
-            <version>${spring-boot.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-actuator</artifactId>
-            <version>${spring-boot.version}</version>
         </dependency>
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-data-jpa</artifactId>
-            <version>${spring-boot.version}</version>
         </dependency>
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-hateoas</artifactId>
-            <version>${spring-boot.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-netflix-eureka-client</artifactId>
+            <version>${spring-cloud-eureka-client.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-actuator</artifactId>
         </dependency>
         <!--TESTING DEPENDENCIES-->
         <dependency>
@@ -165,6 +165,12 @@
             <version>${h2.version}</version>
             <scope>runtime</scope>
         </dependency>
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-commons</artifactId>
+            <version>2.0.1.RELEASE</version>
+            <scope>compile</scope>
+        </dependency>
     </dependencies>
 
     <build>
@@ -193,6 +199,11 @@
                         <version>${surefire-provider.version}</version>
                     </dependency>
                 </dependencies>
+                <configuration>
+                    <argLine>
+                        --illegal-access=permit
+                    </argLine>
+                </configuration>
             </plugin>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
