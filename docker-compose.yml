@@ -18,11 +18,21 @@ services:
     build: gateway
     image: bookfinder/gateway:latest
     ports:
-      - "${GATEWAY_PORT}:8765"
+    - "${GATEWAY_PORT}:8765"
   discovery:
     build: discovery
     image: bookfinder/discovery:latest
     environment:
-      - SERVER_PORT=${EUREKA_PORT}
+    - SERVER_PORT=${EUREKA_PORT}
     ports:
-    - "8761:8761"
+    - "${EUREKA_PORT}:8761"
+  zookeeper:
+    image: wurstmeister/zookeeper
+    ports:
+    - "2181:2181"
+  kafka:
+    image: wurstmeister/kafka
+    ports:
+    - "9092:9092"
+    environment:
+      KAFKA_ZOOKEEPER_CONNECT: zookeeper:2181
