@@ -1,0 +1,21 @@
+version: '3'
+services:
+  scrapper:
+    build:
+      context: ./scrapper
+      dockerfile: Dockerfile.test
+    image: bookfinder/scrapper:latest
+    environment:
+      - SPRING_PROFILES_ACTIVE=test
+  gateway:
+    build: gateway
+    image: bookfinder/gateway:latest
+    ports:
+      - "8765:8765"
+  discovery:
+    build: discovery
+    image: bookfinder/discovery:latest
+    environment:
+      - SERVER_PORT=${EUREKA_PORT}
+    ports:
+      - "8761:8761"
